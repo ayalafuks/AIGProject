@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
+using API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -10,16 +11,17 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class LecturesController : ControllerBase
     {
-        private readonly DataContext _context;
-        public LecturesController(DataContext context)
+
+        private readonly ILectureRepository _lectureRepository;
+        public LecturesController(ILectureRepository lectureRepository)
         {
-            _context = context;
+            _lectureRepository = lectureRepository;
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<Entities.Lecture>>> GetLecturesByCategoryId(int id)
         {
-            return await Task.Run(() => _context.Lectures.Where(l => l.Category.Id == id).ToList());
+            return await _lectureRepository.GetLecturesByCategoryId(id);
         }
     }
 }

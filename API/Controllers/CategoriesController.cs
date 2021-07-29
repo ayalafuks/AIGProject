@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
 using API.Entities;
+using API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -11,16 +12,16 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class CategoriesController : ControllerBase
     {
-        private readonly DataContext _context;
-        public CategoriesController(DataContext context)
+         private readonly ICategoryRepository _categoryRepository;
+       
+        public CategoriesController(ICategoryRepository categoryRepository)
         {
-            _context = context;
-
+          _categoryRepository=categoryRepository;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories(){
-            return await Task.Run(()=> _context.Categories.ToList());
+            return await _categoryRepository.GetCategories();
         }
     }
 }

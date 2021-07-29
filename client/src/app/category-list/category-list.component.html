@@ -1,0 +1,12 @@
+<div>
+  <h1>Category List</h1>
+  <button
+    mat-raised-button
+    style="margin-right: 20px"
+    color="primary"
+    *ngFor="let item of categories; let i = index"
+    (click)="openLecture(item.id)"
+  >
+    {{ item.name }}
+  </button>
+</div>

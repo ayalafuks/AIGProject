@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  justify-content: center !important;
+}
+.mat-tab-labels {
+  justify-content: center;
+}
+.mat-tab-body-content {
+  justify-content: center !important;
+}
+.mat-card {
+  width: 200px;
+}
+.content {
+  padding: 16px;
+}
